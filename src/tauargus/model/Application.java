@@ -143,7 +143,7 @@ public class Application {
     static{
         try{
             //ClassPathHack.addFile(getSpssVersion() + "\\spssjavaplugin.jar");
-            ClassPathHack.loadLibrary(new File(getSpssVersion() + "\\spssjavaplugin.jar"));
+            //ClassPathHack.loadLibrary(new File(getSpssVersion() + "\\spssjavaplugin.jar"));
         }//catch (IOException ex){System.out.print(ex.toString());}
         catch (Exception ex){System.out.print(ex.toString());}
     }
