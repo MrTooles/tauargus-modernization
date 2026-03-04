@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="TauArgus">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/TauArgus.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
