@@ -71,7 +71,7 @@ public class OptiSuppress {
     private static final String DOTS = "....................";
     private static final TauArgus TAUARGUS = Application.getTauArgusDll();    
     private static final HiTaSCtrl TAUHITAS = Application.getTauHitasDll();
-    private static final RounderCtrl TAUROUNDER = Application.getRounder();
+    //private static final RounderCtrl TAUROUNDER = Application.getRounder();
     
     private static int UB, LB, TimeSoFar, nSuppressed;
     private static double DUB, DLB, Diff;
@@ -572,8 +572,8 @@ public class OptiSuppress {
      * 
      * @param VarNo
      * @param expVarNo
-     * @param propertyChangeListener
-     * @param tableSet
+     //* @param propertyChangeListener
+     //* @param tableSet
      * @return
      * @throws ArgusException
      * @throws FileNotFoundException
@@ -1074,8 +1074,8 @@ public class OptiSuppress {
                 pcs.firePropertyChange("closed", null, val);
             }            
         };
-        TAUROUNDER.SetProgressListener(progressListener);
-        TAUROUNDER.SetCallback(jRCallback);
+        //TAUROUNDER.SetProgressListener(progressListener);
+        //TAUROUNDER.SetCallback(jRCallback);
         
         //TODO test on MaxTableValue
         Date startDate = new Date();
@@ -1106,13 +1106,13 @@ public class OptiSuppress {
              #define JJMAXTIME       105
             */
             double jjRoundZero = SystemUtils.getRegDouble("optimal", "jjRoundZero", 0.0000001);
-            TAUROUNDER.SetDoubleConstant(101, jjRoundZero);
+            //TAUROUNDER.SetDoubleConstant(101, jjRoundZero);
             double jjRoundInf = SystemUtils.getRegDouble("optimal", "jjRoundInf", 21400000000000.0);
-            TAUROUNDER.SetDoubleConstant(102, jjRoundInf);
+            //TAUROUNDER.SetDoubleConstant(102, jjRoundInf);
             double jjRoundMinViola = SystemUtils.getRegDouble("optimal", "jjRoundMinViola", 0.0001);
-            TAUROUNDER.SetDoubleConstant(103, jjRoundMinViola);
+            //TAUROUNDER.SetDoubleConstant(103, jjRoundMinViola);
             double jjRoundMaxSlack = SystemUtils.getRegDouble("optimal", "jjRoundMaxSlack", 0.01);
-            TAUROUNDER.SetDoubleConstant(104, jjRoundMaxSlack);               
+            //TAUROUNDER.SetDoubleConstant(104, jjRoundMaxSlack);
 
             double X = tableSet.roundBase;
             solutionString = "";
@@ -1146,20 +1146,21 @@ public class OptiSuppress {
                     TauArgusUtils.DeleteFile(Application.getTempFile("JJ"+xs+".OUT.RAPID"));
                     TauArgusUtils.DeleteFile(Application.getTempFile("JJRound"+xs+".OUT"));
                     TauArgusUtils.DeleteFile(Application.getTempFile("JJStat"+xs+".OUT"));
-                    result = TAUROUNDER.DoRound(Solvername, Application.getTempFile("JJ"+xs+".IN"), X, upperBound, lowerBound, 0,  
+                   /* result = TAUROUNDER.DoRound(Solvername, Application.getTempFile("JJ"+xs+".IN"), X, upperBound, lowerBound, 0,
                                               /*stopRule,*/
-                                              Application.getTempFile("JJ"+xs+".OUT"), 
+                                    /*          Application.getTempFile("JJ"+xs+".OUT"),
                                               Application.getTempFile("JJstat"+xs+".OUT"),
                                               LicenceFile, 
                                               Application.getTempFile("JJRound"+xs+".log"),
                                               maxRoundTime, 0,
                                               Application.getTempDir()+"/",
                                               maxJump, numberJump , usedTime, /*solutionType,*/
-                                              errorCode); //, activityListener );
+                                       /*       errorCode); //, activityListener );
+                    */
                     // Only Optimal is implemented currently, so set manually solutionType = 0;
                     solutionType = 0; 
                     //if (solutionType > 2) {throw new ArgusException("Rounding error code = "+TAUARGUS.GetErrorString(errorCode[0]) + "\noccured in subtable "+j);}             
-                    if (result > 0) {throw new ArgusException("Rounding error code = "+TAUARGUS.GetErrorString(errorCode[0]) + "\noccured in subtable "+j);}
+                    //if (result > 0) {throw new ArgusException("Rounding error code = "+TAUARGUS.GetErrorString(errorCode[0]) + "\noccured in subtable "+j);}
                     tableSet.roundMaxJump = Math.max(tableSet.roundMaxJump, maxJump[0]);
                     tableSet.roundJumps = Math.max(tableSet.roundJumps,numberJump[0]);
                     if (maxJump[0] > tableSet.roundMaxJump){tableSet.roundMaxJump = maxJump[0];}
@@ -1191,7 +1192,7 @@ public class OptiSuppress {
                 joinRounded(tableSet,nPart);
             }
             else{ // round as a single table
-                result = TAUROUNDER.DoRound(Solvername, Application.getTempFile("JJ.IN"), X, upperBound, lowerBound, 0,  
+                /* result = TAUROUNDER.DoRound(Solvername, Application.getTempFile("JJ.IN"), X, upperBound, lowerBound, 0,
                                           Application.getTempFile("JJ.OUT"), 
                                           Application.getTempFile("JJstat.OUT"),
                                           LicenceFile,
@@ -1199,6 +1200,8 @@ public class OptiSuppress {
                                           maxRoundTime, 0,  //Max time,zero restricted
                                           Application.getTempDir()+"/",   // NamePathExe
                                           maxJump, numberJump , usedTime, errorCode); //, activityListener );
+
+                 */
                 solutionType = 0; // Only Optimal is currently implemented
                 //SOLUTION TYPE IS ZOEK!!!!!!!!!!!!! Ik neem aan dat de return value nu de solution type is
                 //NEE DUS!!!!!!!!
@@ -1209,7 +1212,7 @@ public class OptiSuppress {
                     }
                 }                
                 //if (solutionType>2) {throw new ArgusException("Rounding error: "+TAUARGUS.GetErrorString(errorCode[0]));}  
-                if (result > 0) {throw new ArgusException("Rounding error: "+TAUARGUS.GetErrorString(errorCode[0]));}  
+                //if (result > 0) {throw new ArgusException("Rounding error: "+TAUARGUS.GetErrorString(errorCode[0]));}
                 tableSet.roundMaxJump = maxJump[0];
                 tableSet.roundJumps = numberJump[0];
                 tableSet.roundSolType[solutionType]++;             

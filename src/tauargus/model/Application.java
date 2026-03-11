@@ -68,13 +68,13 @@ public class Application {
     // for interfacing with C++ dll
     static {
 //        System.loadLibrary("TauHitas");           
-        System.loadLibrary("TauRounder");
+        //System.loadLibrary("TauRounder");
         System.loadLibrary("TauHitas");
         System.loadLibrary("TauArgusJava");                
  }
     private static TauArgus tauArgus = new TauArgus();
     private static HiTaSCtrl tauHitas = new HiTaSCtrl();
-    private static RounderCtrl rounder = new RounderCtrl();
+    //private static RounderCtrl rounder = new RounderCtrl();
     private static ArrayList<Variable> variables = new ArrayList<Variable>();
     private static ArrayList<Metadata> metadatas = new ArrayList<Metadata>();
     private static boolean anco = false;
@@ -112,9 +112,10 @@ public class Application {
                                     argus.model.Application.REVISION + " build " + argus.model.Application.BUILD;
     }
     
-    public static String getRounderVersion(){
+    /*public static String getRounderVersion(){
         return rounder.GetVersion();
     }
+     */
     
     public static String getHitasVersion(){
         return tauHitas.GetVersion();
@@ -175,9 +176,10 @@ public class Application {
         return tauHitas;
     }
     
-    public static RounderCtrl getRounder() {
+    /*public static RounderCtrl getRounder() {
         return rounder;
     }
+     */
 
     public static List<Metadata> getMetadatas() {
         return metadatas;
@@ -444,7 +446,7 @@ public class Application {
         SystemUtils.writeLogbook("Start of TauArgus run");
         SystemUtils.writeLogbook("TauArgus version " + Application.getFullVersion() + " build " + Application.BUILD);
         SystemUtils.writeLogbook("ArgusLib.jar version " + getArgusLibVersion());
-        SystemUtils.writeLogbook("TauRounder.dll version " + rounder.GetVersion());
+        //SystemUtils.writeLogbook("TauRounder.dll version " + rounder.GetVersion());
         SystemUtils.writeLogbook("TauHitas.dll version " + tauHitas.GetVersion());
         SystemUtils.writeLogbook("TauArgusJava.dll version " + tauArgus.GetVersion());
         SystemUtils.writeLogbook("--------------------------");

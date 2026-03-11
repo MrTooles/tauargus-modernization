@@ -1129,7 +1129,7 @@ public class PanelTable extends javax.swing.JPanel {
 
         panelSuppress.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Suppress"));
 
-        buttonGroupSuppress.add(radioButtonHyperCube);
+        /*buttonGroupSuppress.add(radioButtonHyperCube);
         radioButtonHyperCube.setSelected(true);
         radioButtonHyperCube.setText("Hypercube");
         radioButtonHyperCube.addActionListener(new java.awt.event.ActionListener() {
@@ -1137,8 +1137,10 @@ public class PanelTable extends javax.swing.JPanel {
                 radioButtonHyperCubeActionPerformed(evt);
             }
         });
+         */
 
         buttonGroupSuppress.add(radioButtonModular);
+        radioButtonModular.setSelected(true);
         radioButtonModular.setText("Modular");
         radioButtonModular.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1162,21 +1164,23 @@ public class PanelTable extends javax.swing.JPanel {
             }
         });
 
-        buttonGroupSuppress.add(radioButtonRounding);
+        /*buttonGroupSuppress.add(radioButtonRounding);
         radioButtonRounding.setText("Rounding");
         radioButtonRounding.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonRoundingActionPerformed(evt);
             }
         });
+         */
 
-        buttonGroupSuppress.add(radioButtonCta);
+        /*buttonGroupSuppress.add(radioButtonCta);
         radioButtonCta.setText("CTA");
         radioButtonCta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonCtaActionPerformed(evt);
             }
         });
+         */
 
         buttonGroupSuppress.add(radioButtonUwe);
         radioButtonUwe.setText("uwe");
@@ -1217,13 +1221,14 @@ public class PanelTable extends javax.swing.JPanel {
             }
         });
 
-        buttonGroupSuppress.add(radioButtonNetwork);
+        /*buttonGroupSuppress.add(radioButtonNetwork);
         radioButtonNetwork.setText("Network");
         radioButtonNetwork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonNetworkActionPerformed(evt);
             }
         });
+         */
 
         buttonGroupSuppress.add(radioButtonCellKey);
         radioButtonCellKey.setText("Cell Key Method");
@@ -1843,14 +1848,14 @@ public class PanelTable extends javax.swing.JPanel {
     private void buttonSuppressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSuppressActionPerformed
         JFrame parentFrame = getParentFrame();
         SuppressionMethod Soort = SuppressionMethod.GHMITER;
-        if (radioButtonHyperCube.isSelected()) Soort = SuppressionMethod.GHMITER;
+        //if (radioButtonHyperCube.isSelected()) Soort = SuppressionMethod.GHMITER;
         if (radioButtonModular.isSelected()) Soort = SuppressionMethod.HITAS;
         if (radioButtonOptimal.isSelected()) Soort = SuppressionMethod.OPTIMAL;
         if (radioButtonMarginal.isSelected()) Soort = SuppressionMethod.MARGINAL;
-        if (radioButtonNetwork.isSelected()) Soort = SuppressionMethod.NETWORK;
+        //if (radioButtonNetwork.isSelected()) Soort = SuppressionMethod.NETWORK;
         if (radioButtonUwe.isSelected()) Soort = SuppressionMethod.UWE;
-        if (radioButtonCta.isSelected()) Soort = SuppressionMethod.CTA;
-        if (radioButtonRounding.isSelected()) Soort = SuppressionMethod.ROUNDING;
+        //if (radioButtonCta.isSelected()) Soort = SuppressionMethod.CTA;
+        //if (radioButtonRounding.isSelected()) Soort = SuppressionMethod.ROUNDING;
         if (radioButtonCellKey.isSelected()) Soort = SuppressionMethod.CELLKEY;
 
         if (Soort.isAdditivityDesirable() && !tableSet.isAdditive) {

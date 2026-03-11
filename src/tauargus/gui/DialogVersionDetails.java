@@ -44,7 +44,7 @@ public class DialogVersionDetails extends DialogBase {
         textAreaVersions.append(Application.getArgusLibVersion() + "\n");
         textAreaVersions.append(Application.getArgusJavaVersion() + "\n");
         textAreaVersions.append(Application.getHitasVersion() + "\n");
-        textAreaVersions.append(Application.getRounderVersion());
+        //textAreaVersions.append(Application.getRounderVersion());
         
         labelArgusVersion.setText(Application.getFullVersion() + " build " + Application.BUILD);
                 
