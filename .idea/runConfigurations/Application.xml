@@ -1,7 +1,9 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Application" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="ALTERNATIVE_JRE_PATH" value="zulu-17 (2)" />
+    <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
     <envs>
-      <env name="PATH" value="$PROJECT_DIR$\dlls" />
+      <env name="PATH" value="$PROJECT_DIR$/../tauargus-modernization\dlls" />
     </envs>
     <option name="MAIN_CLASS_NAME" value="tauargus.model.Application" />
     <module name="tauargus" />
