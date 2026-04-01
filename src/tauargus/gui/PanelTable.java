@@ -391,6 +391,10 @@ public class PanelTable extends javax.swing.JPanel {
         radioButtonUwe.setVisible(false);
         radioButtonMarginal.setVisible(false);
         checkBoxInverseWeight.setVisible(false);
+        radioButtonHyperCube.setVisible(false);
+        radioButtonNetwork.setVisible(false);
+        radioButtonRounding.setVisible(false);
+        radioButtonCta.setVisible(false);
       
         buttonMap = new HashMap<>();
    /*         public static final int SUP_NO = 0;
@@ -1156,13 +1160,14 @@ public class PanelTable extends javax.swing.JPanel {
             }
         });
 
-        buttonGroupSuppress.add(radioButtonMarginal);
+        /*buttonGroupSuppress.add(radioButtonMarginal);
         radioButtonMarginal.setText("Marginal");
         radioButtonMarginal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonMarginalActionPerformed(evt);
             }
         });
+         */
 
         /*buttonGroupSuppress.add(radioButtonRounding);
         radioButtonRounding.setText("Rounding");
@@ -1182,13 +1187,14 @@ public class PanelTable extends javax.swing.JPanel {
         });
          */
 
-        buttonGroupSuppress.add(radioButtonUwe);
+        /*buttonGroupSuppress.add(radioButtonUwe);
         radioButtonUwe.setText("uwe");
         radioButtonUwe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonUweActionPerformed(evt);
             }
         });
+         */
 
         checkBoxInverseWeight.setText("InverseWgt");
         checkBoxInverseWeight.addActionListener(new java.awt.event.ActionListener() {
@@ -1230,13 +1236,14 @@ public class PanelTable extends javax.swing.JPanel {
         });
          */
 
-        buttonGroupSuppress.add(radioButtonCellKey);
+        /*buttonGroupSuppress.add(radioButtonCellKey);
         radioButtonCellKey.setText("Cell Key Method");
         radioButtonCellKey.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioButtonCellKeyActionPerformed(evt);
             }
         });
+         */
 
         buttonChangePTable.setText("Change ptable");
         buttonChangePTable.setPreferredSize(new java.awt.Dimension(57, 23));
