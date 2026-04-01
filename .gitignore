@@ -8,3 +8,6 @@
 /*.xpr
 /*.il*
 /out/
+/jpackage_output/
+/mülleimer/
+/jpackage_input/
