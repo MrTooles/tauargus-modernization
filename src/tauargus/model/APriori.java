@@ -172,7 +172,8 @@ public class APriori {
         Omit    (0, 'o'), 
         Safe    (1, 's'), 
         Unsafe  (2, 'u'), 
-        Protect (3, 'p');
+        Protect (3, 'p'),
+        Frozen  (15, 'f');
             
         private final int _idx;
         private final char _symbol;
