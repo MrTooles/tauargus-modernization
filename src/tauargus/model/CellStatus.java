@@ -34,8 +34,9 @@ public enum CellStatus {
     PROTECT_MANUAL          (10, CellStatusCategory.SAFE_PROTECTED,     "Protected",                   new Color(0,153,0)),//Color.green.darker()),
     SECONDARY_UNSAFE        (11, CellStatusCategory.SECONDARY_UNSAFE,   "Secondary",                   Color.blue),
     SECONDARY_UNSAFE_MANUAL (12, CellStatusCategory.SECONDARY_UNSAFE,   "Secondary (from manual)",     new Color(51,153,255)),//Color.cyan), // "Secondary (CTA)", light blue
-    EMPTY_NONSTRUCT         (13, CellStatusCategory.SAFE_NOT_PROTECTED, "Empty (non-struct.)",         Color.gray),
-    EMPTY                   (14, CellStatusCategory.SAFE_PROTECTED,     "Empty",                       Color.black);
+    FROZEN					(13, CellStatusCategory.FROZEN_PROTECTED,   "Frozen", 					   Color.orange),
+    EMPTY_NONSTRUCT         (14, CellStatusCategory.SAFE_NOT_PROTECTED, "Empty (non-struct.)",         Color.gray),
+    EMPTY                   (15, CellStatusCategory.SAFE_PROTECTED,     "Empty",                       Color.black);
 
     private final int value;
     private final CellStatusCategory cellStatusCategory;
@@ -116,8 +117,16 @@ public enum CellStatus {
         return cellStatusCategory == CellStatusCategory.SECONDARY_UNSAFE;
     }
     
+    /*
+     * Denotes if a cell is frozen (already published by another table) 
+     * and may not be used for secondary suppression.
+     */
+    public boolean isFrozen() {
+        return cellStatusCategory == CellStatusCategory.FROZEN_PROTECTED;
+    }
+    
     public boolean isSafe() {
-        return cellStatusCategory == CellStatusCategory.SAFE_PROTECTED || cellStatusCategory == CellStatusCategory.SAFE_NOT_PROTECTED;
+        return cellStatusCategory == CellStatusCategory.SAFE_PROTECTED || cellStatusCategory == CellStatusCategory.SAFE_NOT_PROTECTED || cellStatusCategory == CellStatusCategory.FROZEN_PROTECTED;
     }
     
     public boolean isUnsafe() {

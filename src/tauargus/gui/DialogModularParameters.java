@@ -36,6 +36,10 @@ public class DialogModularParameters extends DialogBase {
         super(parent, modal);
         DialogModularParameters.tableSet = tableSet;
         initComponents();
+        
+        // NEU: Zustand der Checkbox aus dem TableSet laden
+        checkBoxFreezeOnlySafe.setSelected(tableSet.freezeOnlySafeCells);
+        
         this.forOptimal = forOptimal;
         jLabelmaxTimeOptimal.setVisible(forOptimal);
         jTextmaxTimeOptimal.setHorizontalAlignment(JTextField.RIGHT);
@@ -52,6 +56,8 @@ public class DialogModularParameters extends DialogBase {
         if (forOptimal) {
             setTitle("Optimal options");
             labelModularParameters.setText("Options for the optimal suppression:");
+            // Die FCP Option im Optimal-Dialog bei Bedarf ausblenden (optional)
+            checkBoxFreezeOnlySafe.setVisible(false); 
         }
         setLocationRelativeTo(this.getParent());
         setVisible(true);
@@ -71,6 +77,7 @@ public class DialogModularParameters extends DialogBase {
         checkBoxSingleton = new javax.swing.JCheckBox();
         checkBoxSingletonMultiple = new javax.swing.JCheckBox();
         checkBoxMinFreq = new javax.swing.JCheckBox();
+        checkBoxFreezeOnlySafe = new javax.swing.JCheckBox(); // NEU
         jLabelmaxTimeOptimal = new javax.swing.JLabel();
         jTextmaxTimeOptimal = new javax.swing.JTextField();
         jLabelMaxminutes = new javax.swing.JLabel();
@@ -100,6 +107,9 @@ public class DialogModularParameters extends DialogBase {
 
         checkBoxMinFreq.setSelected(true);
         checkBoxMinFreq.setText("Do Min Frequency");
+
+        // NEU: Initialisierung unserer FCP Checkbox
+        checkBoxFreezeOnlySafe.setText("Freeze only safe cells (FCP)");
 
         jLabelmaxTimeOptimal.setText("Max computing time");
 
@@ -157,6 +167,7 @@ public class DialogModularParameters extends DialogBase {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkBoxMinFreq)
+                            .addComponent(checkBoxFreezeOnlySafe) // NEU in horizontale Gruppe eingefügt
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelmaxTimeOptimal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -185,6 +196,8 @@ public class DialogModularParameters extends DialogBase {
                 .addComponent(checkBoxSingletonMultiple)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkBoxMinFreq)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxFreezeOnlySafe) // NEU in vertikale Gruppe eingefügt
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLowerMarg)
@@ -217,6 +230,8 @@ public class DialogModularParameters extends DialogBase {
         tableSet.singletonSingletonCheck = checkBoxSingleton.isSelected();
         tableSet.singletonMultipleCheck = checkBoxSingletonMultiple.isSelected();
         tableSet.minFreqCheck = checkBoxMinFreq.isSelected();
+        // NEU: Zustand der Checkbox im Model speichern
+        tableSet.freezeOnlySafeCells = checkBoxFreezeOnlySafe.isSelected(); 
         tableSet.maxTimeOptimal = Integer.parseInt(jTextmaxTimeOptimal.getText());
         tableSet.SetLowerMarg(Double.parseDouble(jTextFieldLowerMarg.getText()));
         tableSet.SetUpperMarg(Double.parseDouble(jTextFieldUpperMarg.getText()));
@@ -230,53 +245,13 @@ public class DialogModularParameters extends DialogBase {
         dispose();
     }//GEN-LAST:event_DialogClosing
 
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(DialogModularParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(DialogModularParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(DialogModularParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(DialogModularParameters.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                DialogModularParameters dialog = new DialogModularParameters(new javax.swing.JFrame(), tableSet, false, true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonCancel;
     private javax.swing.JButton buttonOk;
     private javax.swing.JCheckBox checkBoxMinFreq;
     private javax.swing.JCheckBox checkBoxSingleton;
     private javax.swing.JCheckBox checkBoxSingletonMultiple;
+    private javax.swing.JCheckBox checkBoxFreezeOnlySafe; // NEU hinzugefügt
     private javax.swing.JLabel jLabelLowerMarg;
     private javax.swing.JLabel jLabelMaxminutes;
     private javax.swing.JLabel jLabelUpperMarg;

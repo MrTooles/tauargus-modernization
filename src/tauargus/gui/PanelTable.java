@@ -1832,13 +1832,14 @@ public class PanelTable extends javax.swing.JPanel {
         worker.execute();
     }//GEN-LAST:event_buttonAuditActionPerformed
 
-    private void buttonUndoSuppressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonUndoSuppressActionPerformed
+    private void buttonUndoSuppressActionPerformed(java.awt.event.ActionEvent evt) {
         TableService.undoSuppress(tableSet.index);
+        ((javax.swing.table.AbstractTableModel)table.getModel()).fireTableDataChanged();
         updateSuppressButtons();
         SystemUtils.writeLogbook("Protection for table: " + tableSet.toString() +  " has been removed");
         ((AbstractTableModel)table.getModel()).fireTableDataChanged();
         TableColumnResizer.adjustColumnPreferredWidths(table, true);
-    }//GEN-LAST:event_buttonUndoSuppressActionPerformed
+    }
 
     private void buttonSuppressActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonSuppressActionPerformed
         JFrame parentFrame = getParentFrame();

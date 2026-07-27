@@ -260,6 +260,7 @@ public class TableSet {
         }
     }
     //int APriory = -1; //Never used???
+    public boolean freezeOnlySafeCells = false;
     
     private final TreeMap<Integer,Long> CKMStatistics = new TreeMap<>(); // Can be final???
     private long nEmpty;
@@ -630,6 +631,10 @@ public class TableSet {
                         cell.status = CellStatus.UNSAFE_MANUAL;
                     } else if (value.equals(metadata.protectStatus)) {
                         cell.status = CellStatus.PROTECT_MANUAL;
+                        
+                    } else if (value.equals("F")) {
+                        cell.status = CellStatus.FROZEN;
+                        
                     } else {
                         if (value.equals("M")) {
                             cell.status = CellStatus.SECONDARY_UNSAFE;
@@ -2587,4 +2592,19 @@ public class TableSet {
         } 
         return -1; 
     } 
+    public void clearFrozenCells() {
+        int[] statusArr = new int[1];
+        int frozenValue = CellStatus.FROZEN.getValue();
+        int safeValue = CellStatus.SAFE.getValue();
+        int totalCells = this.numberOfCells();
+        
+        for (int nc = 0; nc < totalCells; nc++) {
+            // Hole den rohen Status direkt aus der DLL
+            tauArgus.GetTableCellStatus(this.index, nc, statusArr);
+            
+            if (statusArr[0] == frozenValue) {
+                tauArgus.SetTableCellStatus(this.index, nc, safeValue);
+            }
+        }
+    }
 }

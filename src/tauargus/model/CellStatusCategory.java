@@ -22,7 +22,8 @@ public enum CellStatusCategory {
     SAFE_PROTECTED("P"), 
     SAFE_NOT_PROTECTED("S"), 
     PRIMARY_UNSAFE("U"), 
-    SECONDARY_UNSAFE("M");
+    SECONDARY_UNSAFE("M"),
+    FROZEN_PROTECTED("F");
     
     private final String symbol;
 

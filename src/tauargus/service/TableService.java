@@ -85,7 +85,8 @@ public class TableService {
     
     public static void undoSuppress(int index){
         TableSet tableSet = getTable(index);   
-        TAUARGUS.UndoSecondarySuppress(tableSet.index, 1);
+        
+        tauargus.model.Application.getTauArgusDll().UndoSecondarySuppress(tableSet.index, 1);
         tableSet.suppressed = TableSet.SUP_NO;
         tableSet.solverUsed = Application.SOLVER_NO; 
         tableSet.ghMiterMessage = "";
