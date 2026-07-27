@@ -616,10 +616,7 @@ public class OptiSuppress {
     }
     
     public static boolean RunModular(TableSet tableSet, final PropertyChangeListener propertyChangeListener) throws ArgusException, FileNotFoundException, IOException{
-    	try (java.io.PrintWriter out = new java.io.PrintWriter("fcp_variant.txt")) {
-            out.println(tableSet.freezeOnlySafeCells ? "1" : "0");
-        } catch (Exception e) {
-        }
+    
         boolean Oke; 
         int i, returnValue; 
         String hs, fs1, fs2; 

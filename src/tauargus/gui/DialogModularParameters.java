@@ -230,8 +230,11 @@ public class DialogModularParameters extends DialogBase {
         tableSet.singletonSingletonCheck = checkBoxSingleton.isSelected();
         tableSet.singletonMultipleCheck = checkBoxSingletonMultiple.isSelected();
         tableSet.minFreqCheck = checkBoxMinFreq.isSelected();
-        // NEU: Zustand der Checkbox im Model speichern
         tableSet.freezeOnlySafeCells = checkBoxFreezeOnlySafe.isSelected(); 
+        try (java.io.PrintWriter out = new java.io.PrintWriter("fcp_variant.txt")) {
+            out.println(tableSet.freezeOnlySafeCells ? "1" : "0");
+        } catch (Exception e) {
+        }
         tableSet.maxTimeOptimal = Integer.parseInt(jTextmaxTimeOptimal.getText());
         tableSet.SetLowerMarg(Double.parseDouble(jTextFieldLowerMarg.getText()));
         tableSet.SetUpperMarg(Double.parseDouble(jTextFieldUpperMarg.getText()));
