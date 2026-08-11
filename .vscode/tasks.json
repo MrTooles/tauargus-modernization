@@ -1,0 +1,41 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        // --- 1. Task: Nur TauHitas bauen ---
+        {
+            "label": "Make: Baue TauHitas",
+            "type": "shell",
+            "command": "C:\\mingw32\\bin\\mingw32-make.exe",
+            "options": {
+                "cwd": "${workspaceFolder:tauhitas-modernization}",
+                "env": { "PATH": "C:\\Program Files\\Git\\usr\\bin;${env:PATH}" }
+            },
+            "problemMatcher": ["$gcc"]
+        },
+        
+        // --- 2. Task: Nur libtauargus bauen ---
+        {
+            "label": "Make: Baue libtauargus",
+            "type": "shell",
+            "command": "C:\\mingw32\\bin\\mingw32-make.exe",
+            "options": {
+                "cwd": "${workspaceFolder:libtauargus-modernization}",
+                "env": { "PATH": "C:\\Program Files\\Git\\usr\\bin;${env:PATH}" }
+            },
+            "problemMatcher": ["$gcc"]
+        },
+
+        // --- 3. Task: BEIDE nacheinander bauen (Standard bei Strg+Shift+B) ---
+        {
+            "label": "Make: Baue ALLE DLLs",
+            "dependsOn": [
+                "Make: Baue TauHitas",
+                "Make: Baue libtauargus"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}
