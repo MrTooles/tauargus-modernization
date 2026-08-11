@@ -8,6 +8,11 @@
 /*.xpr
 /*.il*
 /out/
+<<<<<<< HEAD
 /jpackage_output/
 /mülleimer/
 /jpackage_input/
+=======
+dlls/TauArgusJava2.dll
+dlls/TauHitas2.dll
+>>>>>>> c2130d2c7a2e448ad4311c20b4d59b5204dbc1d4
