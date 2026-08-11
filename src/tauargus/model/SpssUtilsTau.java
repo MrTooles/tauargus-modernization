@@ -16,7 +16,7 @@
 */
 
 //TODO: test for String format and add the possibility to add/read/write date/time format
-package tauargus.model;;
+package tauargus.model;
 
 import argus.model.SpssVariable;
 import com.ibm.statistics.plugin.Case;
