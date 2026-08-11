@@ -16,7 +16,8 @@
             "request": "launch",
             "mainClass": "tauargus.model.Application",
             "javaExec": "C:\\Users\\eluft\\Documents\\DESTATIS\\zulu17.64.17-ca-jdk17.0.18-win_x64\\zulu17.64.17-ca-jdk17.0.18-win_x64\\bin\\java.exe",
-            "vmArgs": "-Djava.library.path=\"${workspaceFolder:tauargus-modernization}/dlls\""
+            "vmArgs": "-Djava.library.path=\"${workspaceFolder:tauargus-modernization}/dlls\"",
+            "cwd": "${workspaceFolder:tauargus-modernization}/dlls"
         }
     ]
 }
