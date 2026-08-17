@@ -37,8 +37,17 @@ public class DialogModularParameters extends DialogBase {
         DialogModularParameters.tableSet = tableSet;
         initComponents();
         
-        // NEU: Zustand der Checkbox aus dem TableSet laden
+        checkBoxEnableFCP.setSelected(tableSet.enableFCP);
         checkBoxFreezeOnlySafe.setSelected(tableSet.freezeOnlySafeCells);
+        
+        checkBoxFreezeOnlySafe.setEnabled(tableSet.enableFCP);
+        
+        checkBoxEnableFCP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBoxFreezeOnlySafe.setEnabled(checkBoxEnableFCP.isSelected());
+            }
+        });
+        
         
         this.forOptimal = forOptimal;
         jLabelmaxTimeOptimal.setVisible(forOptimal);
@@ -56,7 +65,7 @@ public class DialogModularParameters extends DialogBase {
         if (forOptimal) {
             setTitle("Optimal options");
             labelModularParameters.setText("Options for the optimal suppression:");
-            // Die FCP Option im Optimal-Dialog bei Bedarf ausblenden (optional)
+            checkBoxEnableFCP.setVisible(false);
             checkBoxFreezeOnlySafe.setVisible(false); 
         }
         setLocationRelativeTo(this.getParent());
@@ -77,7 +86,8 @@ public class DialogModularParameters extends DialogBase {
         checkBoxSingleton = new javax.swing.JCheckBox();
         checkBoxSingletonMultiple = new javax.swing.JCheckBox();
         checkBoxMinFreq = new javax.swing.JCheckBox();
-        checkBoxFreezeOnlySafe = new javax.swing.JCheckBox(); // NEU
+        checkBoxEnableFCP = new javax.swing.JCheckBox(); // NEU: Hauptschalter
+        checkBoxFreezeOnlySafe = new javax.swing.JCheckBox(); 
         jLabelmaxTimeOptimal = new javax.swing.JLabel();
         jTextmaxTimeOptimal = new javax.swing.JTextField();
         jLabelMaxminutes = new javax.swing.JLabel();
@@ -108,8 +118,8 @@ public class DialogModularParameters extends DialogBase {
         checkBoxMinFreq.setSelected(true);
         checkBoxMinFreq.setText("Do Min Frequency");
 
-        // NEU: Initialisierung unserer FCP Checkbox
-        checkBoxFreezeOnlySafe.setText("Freeze only safe cells (FCP)");
+        checkBoxEnableFCP.setText("Enable Frozen Cell Problem workaround");
+        checkBoxFreezeOnlySafe.setText("-> Freeze only safe cells");
 
         jLabelmaxTimeOptimal.setText("Max computing time");
 
@@ -167,7 +177,8 @@ public class DialogModularParameters extends DialogBase {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(checkBoxMinFreq)
-                            .addComponent(checkBoxFreezeOnlySafe) // NEU in horizontale Gruppe eingefügt
+                            .addComponent(checkBoxEnableFCP) 
+                            .addComponent(checkBoxFreezeOnlySafe)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabelmaxTimeOptimal)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -197,7 +208,9 @@ public class DialogModularParameters extends DialogBase {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(checkBoxMinFreq)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(checkBoxFreezeOnlySafe) // NEU in vertikale Gruppe eingefügt
+                .addComponent(checkBoxEnableFCP) 
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(checkBoxFreezeOnlySafe)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabelLowerMarg)
@@ -230,11 +243,21 @@ public class DialogModularParameters extends DialogBase {
         tableSet.singletonSingletonCheck = checkBoxSingleton.isSelected();
         tableSet.singletonMultipleCheck = checkBoxSingletonMultiple.isSelected();
         tableSet.minFreqCheck = checkBoxMinFreq.isSelected();
+       
+        tableSet.enableFCP = checkBoxEnableFCP.isSelected();
         tableSet.freezeOnlySafeCells = checkBoxFreezeOnlySafe.isSelected(); 
-        try (java.io.PrintWriter out = new java.io.PrintWriter("fcp_variant.txt")) {
-            out.println(tableSet.freezeOnlySafeCells ? "1" : "0");
-        } catch (Exception e) {
+        
+        int fcpMode = -1; 
+        if (tableSet.enableFCP) {
+            fcpMode = tableSet.freezeOnlySafeCells ? 1 : 0;
         }
+        
+        try (java.io.PrintWriter out = new java.io.PrintWriter("fcp_variant.txt")) {
+            out.println(fcpMode);
+        } catch (Exception e) {
+            // Failsafe
+        }
+        
         tableSet.maxTimeOptimal = Integer.parseInt(jTextmaxTimeOptimal.getText());
         tableSet.SetLowerMarg(Double.parseDouble(jTextFieldLowerMarg.getText()));
         tableSet.SetUpperMarg(Double.parseDouble(jTextFieldUpperMarg.getText()));
@@ -254,7 +277,8 @@ public class DialogModularParameters extends DialogBase {
     private javax.swing.JCheckBox checkBoxMinFreq;
     private javax.swing.JCheckBox checkBoxSingleton;
     private javax.swing.JCheckBox checkBoxSingletonMultiple;
-    private javax.swing.JCheckBox checkBoxFreezeOnlySafe; // NEU hinzugefügt
+    private javax.swing.JCheckBox checkBoxEnableFCP;        
+    private javax.swing.JCheckBox checkBoxFreezeOnlySafe; 
     private javax.swing.JLabel jLabelLowerMarg;
     private javax.swing.JLabel jLabelMaxminutes;
     private javax.swing.JLabel jLabelUpperMarg;
