@@ -260,6 +260,8 @@ public class TableSet {
         }
     }
     //int APriory = -1; //Never used???
+    
+    public boolean enableFCP = false;
     public boolean freezeOnlySafeCells = false;
     
     private final TreeMap<Integer,Long> CKMStatistics = new TreeMap<>(); // Can be final???
